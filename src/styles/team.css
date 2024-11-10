@@ -1,0 +1,100 @@
+#team {
+    padding: 60px 8%;
+    text-align: center;
+    background-color: #f9f9f9;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.section-subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 40px;
+    color: var(--color-neutral-7);
+}
+
+#team_members {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+.team-member {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* Alinha os elementos ao centro */
+    background: linear-gradient(to bottom, var(--color-primary-1), var(--color-primary-2));
+    border-radius: 15px;
+    width: 30%;
+    padding: 20px;
+    color: white;
+    text-align: center;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+
+
+.team-member:hover {
+    transform: translateY(-10px);
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+.team-photo {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
+    border: 3px solid white;
+    display: block;
+    /* Garante que a imagem seja exibida como um bloco centralizado */
+}
+
+.team-name {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.team-specialty {
+    font-size: 1.2rem;
+    color: var(--color-neutral-2);
+    margin-bottom: 15px;
+}
+
+.team-description {
+    font-size: 1rem;
+    color: var(--color-neutral-1);
+    margin-bottom: 20px;
+}
+
+.contact-button {
+    background-color: var(--color-primary-4);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+}
+
+.contact-button:hover {
+    background-color: var(--color-primary-3);
+}
+
+@media (max-width: 768px) {
+    #team_members {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .team-member {
+        width: 80%;
+        margin-bottom: 30px;
+    }
+}

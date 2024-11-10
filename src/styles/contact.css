@@ -1,0 +1,78 @@
+#contact {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    padding: 20px;
+    background-color: var(--color-neutral-0);
+    border-radius: 12px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+}
+
+.section-title,
+.section-subtitle {
+    text-align: center;
+}
+
+/* #contact_buttons {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.contact-button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.contact-button.whatsapp {
+    background-color: #25D366;
+}
+
+.contact-button.instagram {
+    background-color: #E4405F;
+}
+
+.contact-button.tiktok {
+    background-color: #000000;
+}
+
+.contact-button:hover {
+    opacity: 0.8;
+} */
+
+.contact .social-media-buttons {
+    display: flex;
+    gap: 15px;
+}
+
+#contact .social-media-buttons a {
+    color: var(--color-primary-2);
+    font-size: 2.5rem;
+    transition: color 0.3s ease;
+    width: 80px;
+    height: 80px;
+}
+
+#contact .social-media-buttons a:hover {
+    color: var(--color-neutral-0);
+    background-color: var(--color-primary-1);
+}
+
+#map {
+    width: 100%;
+    max-width: 600px;
+    height: 300px;
+    margin-top: 20px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.1);
+}
