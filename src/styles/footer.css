@@ -9,6 +9,10 @@ footer {
     gap: 12px;
 }
 
+/* footer img {
+    width: 90%;
+} */
+
 #footer_items {
     display: flex;
     flex-direction: column;
@@ -50,4 +54,10 @@ footer {
 #copyright {
     font-size: 0.9rem;
     color: var(--color-neutral-5);
+}
+
+@media screen and (max-width: 450px) {
+    footer img {
+        width: 90%;
+    }
 }
