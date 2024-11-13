@@ -9,6 +9,7 @@ $(document).ready(function () {
     let slideIndex = 0;
     const slides = $('.slide');
     const dots = $('#slider-controls .dot');
+    let isManualSlideChange = false; // Flag para verificar se o slide foi alterado manualmente
 
     function showSlide(index) {
         slides.removeClass('active');
@@ -18,12 +19,16 @@ $(document).ready(function () {
     }
 
     function nextSlide() {
-        slideIndex = (slideIndex + 1) % slides.length;
-        showSlide(slideIndex);
+        if (!isManualSlideChange) {
+            slideIndex = (slideIndex + 1) % slides.length;
+            showSlide(slideIndex);
+        }
+        isManualSlideChange = false; // Reseta a flag após cada mudança automática
     }
 
     function currentSlide(index) {
         slideIndex = index;
+        isManualSlideChange = true; // Define que o slide foi alterado manualmente
         showSlide(slideIndex);
     }
 
@@ -40,6 +45,34 @@ $(document).ready(function () {
         });
     });
 
+    // Implementa a transição por arraste
+    let startX = 0;
+    let isDragging = false;
+
+    slides.on('touchstart', function (e) {
+        startX = e.originalEvent.touches[0].clientX;
+        isDragging = true;
+    });
+
+    slides.on('touchmove', function (e) {
+        if (!isDragging) return;
+        const touchX = e.originalEvent.touches[0].clientX;
+        const diff = startX - touchX;
+
+        if (diff > 50) {
+            nextSlide();
+            isDragging = false;
+        } else if (diff < -50) {
+            slideIndex = (slideIndex - 1 + slides.length) % slides.length;
+            showSlide(slideIndex);
+            isDragging = false;
+        }
+    });
+
+    slides.on('touchend', function () {
+        isDragging = false;
+    });
+
     // Alternância automática de depoimentos
     let feedbackIndex = 0;
     const feedbacks = $('#feedbacks .feedback');
@@ -47,8 +80,6 @@ $(document).ready(function () {
 
     function showFeedbacks() {
         feedbacks.hide(); // Oculta todos os depoimentos
-
-        // Exibe o conjunto atual de três feedbacks
         for (let i = feedbackIndex; i < feedbackIndex + feedbacksToShow; i++) {
             $(feedbacks[i % feedbacks.length]).fadeIn(500);
         }
@@ -59,30 +90,20 @@ $(document).ready(function () {
         showFeedbacks();
     }
 
-    // Alterna os depoimentos a cada 5 segundos
     setInterval(nextFeedbackSet, 10000);
-
-    // Exibe os primeiros três depoimentos
     showFeedbacks();
 
     // Atualiza a seleção da seção ativa no menu
     $(window).on('scroll', function () {
-        // Define uma margem para ativar a seção antes de cobrir totalmente a tela
         const offsetMargin = 100;
-
-        // Itera sobre cada seção e ajusta a navegação ativa
         $('section').each(function () {
             let sectionId = $(this).attr('id');
             let sectionTop = $(this).offset().top - offsetMargin;
             let sectionBottom = sectionTop + $(this).outerHeight();
 
-            // Verifica se a seção está na visualização
             if ($(window).scrollTop() >= sectionTop && $(window).scrollTop() < sectionBottom) {
-                // Remove a classe 'active' de todos os itens
                 $('#nav_list .nav-item').removeClass('active');
                 $('#mobile_nav_list .nav-item').removeClass('active');
-
-                // Adiciona a classe 'active' ao item correspondente da seção atual
                 $('#nav_list .nav-item a[href="#' + sectionId + '"]').parent().addClass('active');
                 $('#mobile_nav_list .nav-item a[href="#' + sectionId + '"]').parent().addClass('active');
             }
